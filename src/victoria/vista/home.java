@@ -31,7 +31,6 @@ public class home extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpHome = new javax.swing.JDesktopPane();
-        lblmensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Victoria 1.0");
@@ -42,25 +41,15 @@ public class home extends javax.swing.JFrame {
             }
         });
 
-        lblmensaje.setText("jLabel1");
-
-        jdpHome.setLayer(lblmensaje, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jdpHomeLayout = new javax.swing.GroupLayout(jdpHome);
         jdpHome.setLayout(jdpHomeLayout);
         jdpHomeLayout.setHorizontalGroup(
             jdpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpHomeLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(lblmensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         jdpHomeLayout.setVerticalGroup(
             jdpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpHomeLayout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
-                .addComponent(lblmensaje)
-                .addGap(28, 28, 28))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,13 +101,12 @@ public class home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new home().setVisible(true);                
+                new home().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jdpHome;
-    private javax.swing.JLabel lblmensaje;
     // End of variables declaration//GEN-END:variables
 }

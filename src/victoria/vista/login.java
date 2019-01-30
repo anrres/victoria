@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package victoria.vista;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import victoria.controlador.SesionCR;
 
 /**
  *
@@ -14,12 +11,15 @@ import java.sql.SQLException;
  */
 public class login extends javax.swing.JInternalFrame {
 
+    SesionCR loSesSesionCR = new SesionCR();
+
     /**
      * Creates new form login2
      */
     public login() {
         initComponents();
     }
+
     public void connect() {
         Connection conn = null;
         try {
@@ -39,6 +39,7 @@ public class login extends javax.swing.JInternalFrame {
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,17 +49,17 @@ public class login extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnConectar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtClave = new javax.swing.JTextField();
 
-        jButton1.setText("Conectar");
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConectar.setText("Conectar");
+        btnConectar.setName("btnConectar"); // NOI18N
+        btnConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConectarActionPerformed(evt);
             }
         });
 
@@ -68,9 +69,14 @@ public class login extends javax.swing.JInternalFrame {
         jLabel2.setText("Contraseña:");
         jLabel2.setName("lblContraseña"); // NOI18N
 
-        jTextField1.setName("jTextField1"); // NOI18N
+        txtUsuario.setName("txtUsuario"); // NOI18N
 
-        jTextField2.setName("jTextField2"); // NOI18N
+        txtClave.setName("txtClave"); // NOI18N
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,12 +89,12 @@ public class login extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(txtUsuario))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jButton1)
+                .addComponent(btnConectar)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,31 +103,45 @@ public class login extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnConectar)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // TODO add your handling code here:
-        this.connect();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //loSesSesionCR.setSesSesion(loSesSesion);
+        loSesSesionCR.setStrLogin(this.txtUsuario.getText());
+        loSesSesionCR.setStrClave(this.txtClave.getText());
 
+        if (loSesSesionCR.booIniciaSesion()) {
+            System.out.print("conectado");
+        } else {
+            System.out.print("no conectado");
+        }
+
+        this.connect();
+
+
+    }//GEN-LAST:event_btnConectarActionPerformed
+
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnConectar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtClave;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
