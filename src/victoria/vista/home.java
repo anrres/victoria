@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package victoria.vista;
-
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 /**
  *
  * @author andres.silva
@@ -14,11 +17,10 @@ public class home extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
+
     public home() {
         initComponents();
         jdpHome.removeAll();
-        login frmLogin = new login();
-        jdpHome.add(frmLogin).setVisible(true);
     }
 
     /**
@@ -30,11 +32,35 @@ public class home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdpHome = new javax.swing.JDesktopPane();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        ImageIcon icon= new ImageIcon(getClass().getResource("/images/fondo.JPG"));
+        Image image = icon.getImage();
+        jdpHome = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g) {
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+
+        jMenuItem7.setText("jMenuItem7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Victoria 1.0");
+        setLocation(new java.awt.Point(100, 100));
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        setSize(new java.awt.Dimension(200, 200));
 
+        jdpHome.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jdpHome.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jdpHomeComponentShown(evt);
@@ -49,8 +75,53 @@ public class home extends javax.swing.JFrame {
         );
         jdpHomeLayout.setVerticalGroup(
             jdpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("Inicio");
+
+        jMenuItem8.setText("Login");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Mantenimiento");
+
+        jMenuItem1.setText("Producto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Tipo");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Unidad Medida");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Productor");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("Destino");
+        jMenu2.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Proceso");
+
+        jMenuItem6.setText("Terminados");
+        jMenu3.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,6 +141,21 @@ public class home extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jdpHomeComponentShown
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        login frmLogin = new login();      
+        Dimension desktopSize = jdpHome.getSize();
+        Dimension jInternalFrameSize = frmLogin.getSize();
+        frmLogin.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+        (desktopSize.height- jInternalFrameSize.height)/2);
+        jdpHome.add(frmLogin);
+        frmLogin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,6 +193,18 @@ public class home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JDesktopPane jdpHome;
     // End of variables declaration//GEN-END:variables
 }
