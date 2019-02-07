@@ -10,7 +10,7 @@ import javax.naming.NamingException;
  *
  * @author andres.silva
  */
-public class GenericMO {
+public class GenericDAO {
 
     public int intError = 0;
     public String strError = "";

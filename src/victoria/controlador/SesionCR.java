@@ -2,7 +2,7 @@ package victoria.controlador;
 
 import victoria.entidad.util.Mensaje;
 import victoria.entidad.util.Sesion;
-import victoria.modelo.SesionMO;
+import victoria.modelo.SesionDAO;
 
 /**
  *
@@ -57,7 +57,7 @@ public class SesionCR {
     public boolean booIniciaSesion() {
         boolean booUsuarioValido = false;
         this.setMenMensaje(new Mensaje());
-        SesionMO loSesSesionMO = new SesionMO();
+        SesionDAO loSesSesionMO = new SesionDAO();
         try {
             if (!(booUsuarioValido = loSesSesionMO.booIniciaSesion(this.getSesSesion(), this.strLogin, this.strClave))) {
                 this.setMenMensaje(loSesSesionMO.getMenMensaje());

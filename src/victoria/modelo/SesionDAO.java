@@ -15,11 +15,11 @@ import victoria.entidad.util.Sesion;
  *
  * @author andres.silva
  */
-public class SesionMO {
+public class SesionDAO {
 
     Mensaje menMensaje = new Mensaje();
 
-    public SesionMO() {
+    public SesionDAO() {
         this.setMenMensaje(new Mensaje());
     }
 
@@ -95,6 +95,7 @@ public class SesionMO {
                 inSesSesion.setUsuUsuario(new Usuario());
                 inSesSesion.getUsuUsuario().setStrId(inStrLogin);
                 inSesSesion.getUsuUsuario().setStrId(loRSQuery.getString("IDUSUARIO"));
+                inSesSesion.getUsuUsuario().setStrIdUsuario(loRSQuery.getString("IDUSUARIO"));
                 inSesSesion.getUsuUsuario().setLonId(loRSQuery.getLong("IDPERSONA"));
                 inSesSesion.getUsuUsuario().setStrClave(loRSQuery.getString("CLAVE"));
                 inSesSesion.getUsuUsuario().getEstEstado().setStrIdEstado(loRSQuery.getString("IDESTADO"));

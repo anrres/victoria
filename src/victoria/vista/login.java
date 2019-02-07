@@ -98,9 +98,9 @@ public class login extends javax.swing.JInternalFrame {
                     .addComponent(txtUsuario))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addComponent(btnConectar)
-                .addGap(62, 62, 62))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,14 +126,19 @@ public class login extends javax.swing.JInternalFrame {
         //loSesSesionCR.setSesSesion(loSesSesion);
         loSesSesionCR.setStrLogin(this.txtUsuario.getText());
         loSesSesionCR.setStrClave(this.txtClave.getText());
-
         if (loSesSesionCR.booIniciaSesion()) {
+            if (loSesSesionCR.getSesSesion().getUsuUsuario().getStrIdUsuario().compareTo("ADMIN")==0){
+                home.AsignaMenu(loSesSesionCR.getSesSesion(),"ADMINISTRADOR");
+                this.dispose();                
+                System.out.print(home.getSesSesion().getUsuUsuario().getStrIdUsuario());
+            }
             System.out.print("conectado");
+            
         } else {
             System.out.print("no conectado");
         }
 
-        this.connect();
+        //this.connect();
 
 
     }//GEN-LAST:event_btnConectarActionPerformed

@@ -4,23 +4,26 @@
  * and open the template in the editor.
  */
 package victoria.vista;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+import victoria.entidad.util.Sesion;
+
 /**
  *
  * @author andres.silva
  */
 public class home extends javax.swing.JFrame {
 
+    public static Sesion sesSesion;
+
     /**
      * Creates new form home
      */
-
     public home() {
         initComponents();
-        jdpHome.removeAll();
     }
 
     /**
@@ -41,15 +44,15 @@ public class home extends javax.swing.JFrame {
             }
         };
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuInicio = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuMantenimiento = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mnuProceso = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem7.setText("jMenuItem7");
@@ -71,14 +74,14 @@ public class home extends javax.swing.JFrame {
         jdpHome.setLayout(jdpHomeLayout);
         jdpHomeLayout.setHorizontalGroup(
             jdpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jdpHomeLayout.setVerticalGroup(
             jdpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Inicio");
+        mnuInicio.setText("Inicio");
 
         jMenuItem8.setText("Login");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +89,11 @@ public class home extends javax.swing.JFrame {
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem8);
+        mnuInicio.add(jMenuItem8);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuInicio);
 
-        jMenu2.setText("Mantenimiento");
+        mnuMantenimiento.setText("Mantenimiento");
 
         jMenuItem1.setText("Producto");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,28 +101,28 @@ public class home extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        mnuMantenimiento.add(jMenuItem1);
 
         jMenuItem2.setText("Tipo");
-        jMenu2.add(jMenuItem2);
+        mnuMantenimiento.add(jMenuItem2);
 
         jMenuItem3.setText("Unidad Medida");
-        jMenu2.add(jMenuItem3);
+        mnuMantenimiento.add(jMenuItem3);
 
         jMenuItem4.setText("Productor");
-        jMenu2.add(jMenuItem4);
+        mnuMantenimiento.add(jMenuItem4);
 
         jMenuItem5.setText("Destino");
-        jMenu2.add(jMenuItem5);
+        mnuMantenimiento.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuMantenimiento);
 
-        jMenu3.setText("Proceso");
+        mnuProceso.setText("Proceso");
 
         jMenuItem6.setText("Terminados");
-        jMenu3.add(jMenuItem6);
+        mnuProceso.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnuProceso);
 
         setJMenuBar(jMenuBar1);
 
@@ -127,7 +130,7 @@ public class home extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpHome, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jdpHome)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,14 +151,35 @@ public class home extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        login frmLogin = new login();      
+        login frmLogin = new login();
         Dimension desktopSize = jdpHome.getSize();
         Dimension jInternalFrameSize = frmLogin.getSize();
-        frmLogin.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
-        (desktopSize.height- jInternalFrameSize.height)/2);
+        frmLogin.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height) / 2);
         jdpHome.add(frmLogin);
-        frmLogin.setVisible(true);
+        mnuInicio.setEnabled(false);
+        mnuMantenimiento.setEnabled(false);
+        mnuProceso.setEnabled(false);
+        frmLogin.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    public static void AsignaMenu(Sesion inSesSesion, String inStrRol) {
+        if (inStrRol.compareTo("ADMINISTRADOR") == 0) {
+            mnuInicio.getItem(0).setEnabled(false);
+            mnuMantenimiento.setVisible(true);
+            mnuProceso.setVisible(true);
+            mnuInicio.setEnabled(true);
+            mnuMantenimiento.setEnabled(true);
+            mnuProceso.setEnabled(true);
+            sesSesion = inSesSesion;
+        }
+        if (inStrRol.compareTo("USUARIO") == 0) {
+            mnuInicio.getItem(0).setEnabled(false);
+            mnuProceso.setVisible(true);
+            mnuProceso.setEnabled(true);
+            sesSesion = inSesSesion;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -188,14 +212,23 @@ public class home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new home().setVisible(true);
+                mnuMantenimiento.setVisible(false);
+                mnuProceso.setVisible(false);
+
             }
         });
     }
 
+    public static Sesion getSesSesion() {
+        return sesSesion;
+    }
+
+    public static void setSesSesion(Sesion sesSesion) {
+        home.sesSesion = sesSesion;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -204,7 +237,10 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JDesktopPane jdpHome;
+    public static javax.swing.JMenuItem jMenuItem8;
+    public static javax.swing.JDesktopPane jdpHome;
+    public static javax.swing.JMenu mnuInicio;
+    public static javax.swing.JMenu mnuMantenimiento;
+    public static javax.swing.JMenu mnuProceso;
     // End of variables declaration//GEN-END:variables
 }

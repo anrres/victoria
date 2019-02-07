@@ -9,7 +9,7 @@ import java.sql.SQLException;
  *
  * @author andres.silva
  */
-public class AdmBase extends GenericMO {
+public class AdmBase extends GenericDAO {
 
     private Connection conConexion;
     public Sesion sesSesion;
