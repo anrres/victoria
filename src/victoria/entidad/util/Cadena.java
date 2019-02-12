@@ -1,5 +1,7 @@
 package victoria.entidad.util;
 
+import java.util.StringTokenizer;
+
 /**
  *
  * @author andres.silva
@@ -49,4 +51,15 @@ public class Cadena {
     public static String strVerificaString(String inStrCadena) {
         return booEsCadena(inStrCadena) ? strQuitaComas(inStrCadena) : new String();
     }
+    
+	public static String[] strObtenerCadenaXToken(String inStrCadena, String inStrToken) {
+		StringTokenizer loStrToken = new StringTokenizer(inStrCadena, inStrToken);
+		String loStrRetorno[] = new String[loStrToken.countTokens()];
+		int loIntIndice = 0;
+		while (loStrToken.hasMoreTokens()) {
+			loStrRetorno[loIntIndice] = loStrToken.nextToken();
+			loIntIndice++;
+		}
+		return loStrRetorno;
+	}
 }
